@@ -1,6 +1,27 @@
-# Getting Started with Create React App
+# DVD Rental App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sistem management actor dan film
+
+## Installation
+
+1. clone project [dvd-api](https://github.com/mdfadly/dvd-api) and run project java on your IDE
+2. clone project dvd rental app to your directory
+3. open your directory (after clone)
+4. open your command line and type:
+```bash
+npm install
+```
+5. after finished npm install, type:
+```bash
+npm start
+```
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+
+```bash
+pip install foobar
+```
+6. Open http://localhost:3000 to view it in the browser.
 
 ## Available Scripts
 
