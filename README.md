@@ -15,12 +15,6 @@ npm install
 ```bash
 npm start
 ```
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
-```
 6. Open http://localhost:3000 to view it in the browser.
 
 ## Available Scripts
