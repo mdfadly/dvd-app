@@ -1,6 +1,6 @@
 import { React, Component } from 'react'
 import TableComp from '../../components/Table/Table2'
-import { Container, Grid, Typography, FormControl, FormGroup, Button } from '@material-ui/core';
+import { Container, Grid, Typography, Button } from '@material-ui/core';
 import './Actor.css'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';

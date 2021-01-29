@@ -166,9 +166,9 @@ const mapData = (x, i, headCells, handleRemove, startEditing, formData) => {
                             return x.languageId.name;
                         }
                         if (y.id === 'specialFeature') {
-                            for(var ab=0; ab < x.specialFeature.length; ab++){
-                                return x.specialFeature[ab]+", ";
-                            }
+                            // for(var ab=0; ab < x.specialFeature.length; ab++){
+                                return x.specialFeature+", ";
+                            // }
                         }
                         if (y.id === 'lastUpdate') {
                             return dateFormat(x[y.id], "mmmm dS, yyyy");
