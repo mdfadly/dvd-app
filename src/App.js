@@ -3,7 +3,7 @@ import { Container, Grid } from '@material-ui/core';
 import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import Actor from './pages/Actor/Index'
+import Actor from './pages/Actor/ActorPage'
 import Film from './pages/Film/Film'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 

@@ -1,5 +1,5 @@
 import { React, Component } from 'react'
-import TableComp from '../../components/Table/Table2'
+import TableComp from '../../components/Table/Table3'
 import { Container, Grid, Typography, Button } from '@material-ui/core';
 import './Actor.css'
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,9 +11,9 @@ import Swal from "sweetalert2";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-import ReactToExcel from 'react-html-table-to-excel';
+import dateFormat from 'dateformat';
 
-class Index extends Component {
+class ActorPage extends Component {
 
     constructor(props) {
         super(props);
@@ -24,15 +24,14 @@ class Index extends Component {
             lastName: "",
             searchActor: "",
             editIdx: -1,
-            headCells: [
-                { id: 'actorId', numeric: true, disablePadding: false, label: 'Actor Id' },
-                { id: 'firstName', numeric: false, disablePadding: true, label: 'First Name' },
-                { id: 'lastName', numeric: false, disablePadding: true, label: 'Last Name' },
-                { id: 'lastUpdate', numeric: false, disablePadding: true, label: 'Last Update' },
-                { id: 'actions', numeric: false, disablePadding: true, label: 'Actions' },
-            ],
             conditions: false,
             stateForm: "Add",
+            columns: [
+                { field: 'actorId', title: 'Actor Id' },
+                { field: 'firstName', title: 'First Name' },
+                { field: 'lastName', title: 'Last Name' },
+                { field: 'lastUpdate', title: 'Last Update', render: rowData => dateFormat(rowData.lastUpdate, "mmmm dS, yyyy") },
+            ]
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -169,7 +168,7 @@ class Index extends Component {
             [event.target.name]: event.target.value,
         });
         console.log(event.target.value);
-        if(event.target.value !== ""){
+        if (event.target.value !== "") {
             Axios.get("actor/search/" + event.target.value).then((response) => {
                 console.log(response);
                 this.setState({
@@ -183,9 +182,9 @@ class Index extends Component {
                 }
                 this.findActor();
             })
-        }else{
+        } else {
             this.findActor();
-        }  
+        }
     }
 
     render() {
@@ -260,45 +259,16 @@ class Index extends Component {
                     <Grid item xs={8}>
                         <Typography>List Actor</Typography>
                     </Grid>
-                    <Grid item xs={4}>
-                        <TextField
-                            style={{ width: '100%', fontSize: '12px' }}
-                            id="outlined-basic"
-                            label="Search Actor"
-                            name="searchActor"
-                            value={this.state.searchActor}
-                            onChange={this.handleSearch}
-                            variant="outlined"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Grid>
-                </Grid>
-                <br />
-                <Grid container className="section">
-                    <Grid item className="section_title" xs={12}>
-                        <ReactToExcel
-                            className="btn"
-                            table="table-data"
-                            fileName="Excel File"
-                            sheet="sheet 1"
-                            buttonText="Export"
-                        />
-                    </Grid>
                 </Grid>
                 <br />
                 <Grid container className="">
                     <TableComp
-                        rows={this.state.actors}
-                        headCells={this.state.headCells}
-                        handleRemove={this.handleRemove}
+                        allData={this.state.actors}
+                        allColumns={this.state.columns}
                         startEditing={this.handleUpdate}
+                        handleRemove={this.handleRemove}
                         formData="actor"
+                        title="Table Actor"
                     />
                 </Grid>
 
@@ -307,4 +277,4 @@ class Index extends Component {
     }
 }
 
-export default Index
+export default ActorPage

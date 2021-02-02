@@ -273,6 +273,7 @@ export default ({ rows, headCells, handleRemove, startEditing, formData }) => {
                 <TableContainer>
                     <Table
                         className={classes.table}
+                        id="table-data"
                         aria-labelledby="tableTitle"
                         size={'medium'}
                         aria-label="enhanced table"

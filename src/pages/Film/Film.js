@@ -1,5 +1,5 @@
 import { React, Component } from 'react'
-import TableComp from '../../components/Table/Table2'
+import TableComp from '../../components/Table/Table3'
 import { Container, Grid, Typography, Button } from '@material-ui/core';
 import './Film.css'
 import Axios from "../../services/axios-instance";
@@ -16,6 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import dateFormat from 'dateformat';
 
 class Film extends Component {
 
@@ -43,11 +44,11 @@ class Film extends Component {
             features: [
                 "Commentaries", "Behind the Scenes", "Deleted Scenes", "Trailers"
             ],
-            featureCheck:[
-                { status: false, label: "Commentaries"},
-                { status:false, label: "Behind the Scenes"},
-                { status:false, label: "Deleted Scenes"},
-                { status:false, label: "Trailers"},
+            featureCheck: [
+                { status: false, label: "Commentaries" },
+                { status: false, label: "Behind the Scenes" },
+                { status: false, label: "Deleted Scenes" },
+                { status: false, label: "Trailers" },
             ],
             specialFeature: [],
             languageId: "",
@@ -67,6 +68,25 @@ class Film extends Component {
                 { id: 'lastUpdate', numeric: false, disablePadding: true, label: 'Last Update' },
                 { id: 'actions', numeric: false, disablePadding: true, label: 'Actions' },
             ],
+            columns: [
+                { field: 'filmId', title: 'Film Id' },
+                { field: 'title', title: 'Title' },
+                { field: 'description', title: 'Description' },
+                { field: 'releaseYear', title: 'Release Year' },
+                {
+                    field: 'languageId.name', title: 'Language', render: rowData => rowData.languageId.name, customExport: rowData => rowData.languageId.name
+                },
+                { field: 'rentalDuration', title: 'Rental Duration' },
+                { field: 'rentalRate', title: 'Rental Rate' },
+                { field: 'length', title: 'Length' },
+                { field: 'replacementCost', title: 'Cost' },
+                { field: 'rating', title: 'Rating', lookup: { G: 'G', PG: 'PG', NC17: 'NC-17', PG13: 'PG-13', R: 'R' }, },
+                {
+                    field: 'specialFeature', title: 'Special Features', render: rowData => rowData.specialFeature.join(', ')
+                },
+                { field: 'lastUpdate', title: 'Last Update', render: rowData => dateFormat(rowData.lastUpdate, "mmmm dS, yyyy") },
+            ],
+            dataTable: [],
             conditions: false,
             stateForm: "Add",
             searchFilm: "",
@@ -89,7 +109,7 @@ class Film extends Component {
 
     findFilm() {
         Axios.get("film").then((response) => {
-            // console.log(response);
+            console.log(response.data);
             this.setState({
                 films: response.data
             })
@@ -139,30 +159,32 @@ class Film extends Component {
                             title: 'Successfully!',
                             text: 'You submit a new Actor!',
                         }).then((result) => {
-                            this.setState({ title: "", description: "",languageId: "", length: "",rating: "", releaseYear: "",rentalDuration: "", rentalRate: "",replacementCost: "", specialFeature: "",conditions: true, 
-                                featureCheck:[
-                                    { status: false, label: "Commentaries"},
-                                    { status:false, label: "Behind the Scenes"},
-                                    { status:false, label: "Deleted Scenes"},
-                                    { status:false, label: "Trailers"},
+                            this.setState({
+                                title: "", description: "", languageId: "", length: "", rating: "", releaseYear: "", rentalDuration: "", rentalRate: "", replacementCost: "", specialFeature: "", conditions: true,
+                                featureCheck: [
+                                    { status: false, label: "Commentaries" },
+                                    { status: false, label: "Behind the Scenes" },
+                                    { status: false, label: "Deleted Scenes" },
+                                    { status: false, label: "Trailers" },
                                 ],
                             })
                         })
                     })
                 } else {
-                    Axios.put("film/id/"+this.state.filmId, film).then((response) => {
+                    Axios.put("film/id/" + this.state.filmId, film).then((response) => {
                         console.log(response);
                         Swal.fire({
                             icon: 'success',
                             title: 'Successfully!',
                             text: 'You submit a new Actor!',
                         }).then((result) => {
-                            this.setState({ title: "", description: "",languageId: "", length: "",rating: "", releaseYear: "",rentalDuration: "", rentalRate: "",replacementCost: "", specialFeature: "",conditions: true, 
-                                featureCheck:[
-                                    { status: false, label: "Commentaries"},
-                                    { status:false, label: "Behind the Scenes"},
-                                    { status:false, label: "Deleted Scenes"},
-                                    { status:false, label: "Trailers"},
+                            this.setState({
+                                title: "", description: "", languageId: "", length: "", rating: "", releaseYear: "", rentalDuration: "", rentalRate: "", replacementCost: "", specialFeature: "", conditions: true,
+                                featureCheck: [
+                                    { status: false, label: "Commentaries" },
+                                    { status: false, label: "Behind the Scenes" },
+                                    { status: false, label: "Deleted Scenes" },
+                                    { status: false, label: "Trailers" },
                                 ],
                             })
                         })
@@ -373,10 +395,10 @@ class Film extends Component {
                             </Grid>
                             <Grid item xs={12}>
                                 <FormLabel component="legend">Special Features</FormLabel>
-                                {this.state.featureCheck.map((x,i) => (
+                                {this.state.featureCheck.map((x, i) => (
                                     <FormControlLabel
-                                    control={<Checkbox checked={this.state.specialFeature.includes(x.label) === true ? true : x.status} onChange={this.handleChangeCheck} name={x.label} />}
-                                    label={x.label}
+                                        control={<Checkbox checked={this.state.specialFeature.includes(x.label) === true ? true : x.status} onChange={this.handleChangeCheck} name={x.label} />}
+                                        label={x.label}
                                     />
                                 ))}
                             </Grid>
@@ -385,7 +407,7 @@ class Film extends Component {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    disabled={!this.state.title || !this.state.description || !this.state.languageId || !this.state.rating || !this.state.length || !this.state.releaseYear || !this.state.rentalDuration || !this.state.rentalRate || !this.state.replacementCost || this.state.specialFeature.length<1}
+                                    disabled={!this.state.title || !this.state.description || !this.state.languageId || !this.state.rating || !this.state.length || !this.state.releaseYear || !this.state.rentalDuration || !this.state.rentalRate || !this.state.replacementCost || this.state.specialFeature.length < 1}
                                     style={{ width: '100%' }}
                                     onClick={this.handleSubmitSave}
                                 >
@@ -420,33 +442,16 @@ class Film extends Component {
                     <Grid item xs={8}>
                         <Typography>List Film</Typography>
                     </Grid>
-                    <Grid item xs={4}>
-                        <TextField
-                            style={{ width: '100%', fontSize: '12px' }}
-                            id="outlined-basic"
-                            label="Search Film"
-                            name="searchFilm"
-                            value={this.state.searchFilm}
-                            onChange={this.handleSearch}
-                            variant="outlined"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Grid>
                 </Grid>
                 <br />
                 <Grid container className="">
                     <TableComp
-                        rows={this.state.films}
-                        headCells={this.state.headCells}
-                        handleRemove={this.handleRemove}
+                        allData={this.state.films}
+                        allColumns={this.state.columns}
                         startEditing={this.handleUpdate}
+                        handleRemove={this.handleRemove}
                         formData="film"
+                        title="Table Film"
                     />
                 </Grid>
             </>
