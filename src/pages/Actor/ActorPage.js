@@ -4,14 +4,12 @@ import { Container, Grid, Typography, Button } from '@material-ui/core';
 import './Actor.css'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Card from "@material-ui/core/Card";
 import Paper from '@material-ui/core/Paper';
 import Axios from "../../services/axios-instance";
 import Swal from "sweetalert2";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SearchIcon from '@material-ui/icons/Search';
 import dateFormat from 'dateformat';
+import Input from '@material-ui/core/Input';
 
 class ActorPage extends Component {
 
@@ -219,6 +217,7 @@ class ActorPage extends Component {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField style={{ width: '100%', }} id="standard-basic" label="Last Name" name="lastName" required value={this.state.lastName} onChange={this.handleChange} />
+                                
                             </Grid>
                             <Grid item xs={12} style={{ marginTop: 16 }}>
                                 <Button

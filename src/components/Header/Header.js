@@ -19,7 +19,7 @@ import {
 import './Header.css'
 
 const Header = (props) => {
-    const pathName = props ?.location ?.pathname;
+    const pathName = props?.location?.pathname;
     return (
         <Navbar expand="lg" sticky="top" className="header">
             <Nav.Link as={NavLink} to="/" className="header_navlink">
@@ -37,6 +37,9 @@ const Header = (props) => {
                     </Nav.Link>
                     <Nav.Link as={NavLink} to="/film" className={pathName === '/film' ? 'header_link_active' : 'header_link'}>
                         Film
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/hook2" className={pathName === '/hook2' ? 'header_link_active' : 'header_link'}>
+                        Hook2
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>

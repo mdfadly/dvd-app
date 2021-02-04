@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Axios from "../../services/axios-instance";
 import { CsvBuilder } from "filefy";
 
 const useStyles = makeStyles({
@@ -34,7 +35,6 @@ export default ({ allData, allColumns, startEditing, handleRemove, formData, tit
 
     const deffexportCsv = (allColumns, allData) => {
         const columns = allColumns.filter(columnDef => columnDef["export"] !== false);
-        const exportedData = allData.map(rowData => columns.map(columnDef => rowData[columnDef.field]));
         const data = allData.map(rowData =>
             allColumns.map(columnDef => {
                 // return this.getFieldValue(rowData, columnDef);
@@ -93,8 +93,8 @@ export default ({ allData, allColumns, startEditing, handleRemove, formData, tit
                 options={{
                     actionsColumnIndex: -1,
                     exportButton: true,
+                    exportCsv: deffexportCsv,
                     exportAllData: true,
-                    exportCsv: deffexportCsv
                 }}
             />
         </TableContainer>

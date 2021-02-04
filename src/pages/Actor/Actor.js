@@ -1,8 +1,9 @@
 import { React, Component } from 'react'
 import { Container, Grid, Typography } from '@material-ui/core';
 import './Actor.css'
-import TableComp from '../../components/Table/Table'
+// import TableComp from '../../components/Table/Table'
 import Axios from "../../services/axios-instance";
+import TextField from '@material-ui/core/TextField';
 
 class Actor extends Component {
     constructor(props) {
@@ -62,7 +63,7 @@ class Actor extends Component {
 
     startEditing = (i) => {
         console.log(i)
-        Axios.get("actor/id/"+i).then((response) => {
+        Axios.get("actor/id/" + i).then((response) => {
             console.log(response);
             this.setState({
                 actorId: response.data.actorId,
@@ -102,15 +103,8 @@ class Actor extends Component {
                     </Grid>
                 </Grid>
                 <Grid container className="">
-                    <TableComp
-                        handleRemove={this.handleRemove}
-                        startEditing={this.startEditing}
-                        editIdx={this.state.editIdx}
-                        handleChange={this.handleChange}
-                        stopEditing={this.stopEditing}
-                        data={this.state.actors}
-                        header={this.state.columns}
-                    />
+                    <TextField style={{ width: '100%', }} id="standard-basic" label="First Name" name="firstName" required value={this.state.firstName} onChange={this.handleChange} />
+                    <TextField style={{ width: '100%', }} id="standard-basic" label="Last Name" name="lastName" required value={this.state.lastName} onChange={this.handleChange} />
                 </Grid>
                 <Grid container className=""></Grid>
             </>
