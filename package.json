@@ -1,6 +1,6 @@
 {
-  "name": "app-dvdrental",
-  "homepage": "https://mdfadly.github.io/dvd-app",
+  "homepage": "http://mdfadly.github.io/dvd-app",
+  "name": "dvd-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
