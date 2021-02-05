@@ -38,8 +38,8 @@ const Header = (props) => {
                     <Nav.Link as={NavLink} to="/film" className={pathName === '/film' ? 'header_link_active' : 'header_link'}>
                         Film
                     </Nav.Link>
-                    <Nav.Link as={NavLink} to="/hook2" className={pathName === '/hook2' ? 'header_link_active' : 'header_link'}>
-                        Hook2
+                    <Nav.Link as={NavLink} to="/dataTable" className={pathName === '/dataTable' ? 'header_link_active' : 'header_link'}>
+                        data Table
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>

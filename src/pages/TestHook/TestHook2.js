@@ -108,7 +108,7 @@ function TestHook() {
         })
     }, [alert, films])
 
-    const [alertLanguages, setAlertLanguages] = useState(true);
+    const [alertLanguages, setAlertLanguages] = useState(false);
     const [languages, setLanguages] = useState([]);
     useEffect(() => {
         if (languages.length && !alert) {
@@ -116,7 +116,7 @@ function TestHook() {
         }
         Axios.get("language").then((response) => {
             setLanguages(response.data)
-            setAlertLanguages(true)
+            setAlertLanguages(false)
         })
     }, [alertLanguages, languages])
 

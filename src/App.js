@@ -4,9 +4,10 @@ import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Actor from './pages/TestHook/TestHook'
-import Film from './pages/Film/Film'
+import Film from './pages/TestHook/TestHook2'
 // import TestHook from './pages/TestHook/TestHook'
-import TestHook2 from './pages/TestHook/TestHook2'
+// import TestHook2 from './pages/TestHook/TestHook2'
+import TestHook3 from './pages/TestHook/TestHook3'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './App.css';
@@ -24,8 +25,8 @@ function App() {
             <Header />
             <div className="main-content container_shadow">
               <Switch>
-                <Route path="/hook2">
-                  <TestHook2 />
+                <Route path="/dataTable">
+                  <TestHook3 />
                 </Route>
                 <Route path="/film">
                   <Film />
