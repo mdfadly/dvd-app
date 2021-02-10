@@ -3,12 +3,13 @@ import { Container, Grid } from '@material-ui/core';
 import Sidebar from './components/Sidebar/Sidebar'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import Actor from './pages/TestHook/TestHook'
-import Film from './pages/TestHook/TestHook2'
-// import TestHook from './pages/TestHook/TestHook'
-// import TestHook2 from './pages/TestHook/TestHook2'
+import Actor from './pages/Actor/ActorPage'
+import Film from './pages/Film/Film'
+// import Actor from './pages/TestHook/TestHook'
+// import Film from './pages/TestHook/TestHook2'
 import TestHook3 from './pages/TestHook/TestHook3'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import 'react-app-polyfill/stable'
 
 import './App.css';
 

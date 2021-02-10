@@ -2,13 +2,14 @@ import React from 'react'
 import MUIDataTable from "mui-datatables"
 import TableContainer from '@material-ui/core/TableContainer'
 import Paper from '@material-ui/core/Paper'
-import { Button } from '@material-ui/core'
+import {  Grid, Typography,Button } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
+import PrintIcon from '@material-ui/icons/Print'
 
 function Table4({ allData, allColumns, title, handleUpdate, handleRemove }) {
 
-    const fileNameCsv = title+'.csv'
+    const fileNameCsv = title + '.csv'
     const tempColumns = [
         ...allColumns,
         {
@@ -36,17 +37,18 @@ function Table4({ allData, allColumns, title, handleUpdate, handleRemove }) {
         },
     ]
     const options = {
-        responsive: 'simple',
+        responsive: "standard",
         selectableRowsHeader: false,
         selectableRows: "none",
         searchPlaceholder: "search actor",
         filter: false,
         viewColumns: false,
         jumpToPage: true,
-        downloadOptions : {
+        // print: false,
+        downloadOptions: {
             filename: fileNameCsv,
-            filterOptions:{
-                useDisplayedColumnsOnly:true,
+            filterOptions: {
+                useDisplayedColumnsOnly: true,
                 useDisplayedRowsOnly: true
             }
         }
@@ -55,6 +57,26 @@ function Table4({ allData, allColumns, title, handleUpdate, handleRemove }) {
     return (
         <>
             <TableContainer component={Paper}>
+                <Grid
+                    justify="space-between" // Add it here :)
+                    container
+                    spacing={24}
+                >
+                    <Grid item>
+                        {/* <Typography type="title" color="inherit">
+                            Title
+                        </Typography> */}
+                    </Grid>
+
+                    <Grid item>
+                        <div>
+                            <Button style={{ align: 'right' }}>
+                                <PrintIcon /> Print PDF
+                            </Button>
+                        </div>
+                    </Grid>
+                </Grid>
+                
                 <MUIDataTable
                     title={title}
                     data={allData}

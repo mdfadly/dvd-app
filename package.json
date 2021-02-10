@@ -1,5 +1,4 @@
 {
-  "homepage": "http://mdfadly.github.io/dvd-app",
   "name": "dvd-app",
   "version": "0.1.0",
   "private": true,
@@ -14,9 +13,10 @@
     "dateformat": "^4.5.0",
     "filefy": "^0.1.10",
     "gh-pages": "^3.1.0",
-    "material-table": "^1.69.2",
+    "material-table": "^1.67.0",
     "mui-datatables": "^3.7.5",
     "react": "^17.0.1",
+    "react-app-polyfill": "^2.0.0",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
     "react-html-table-to-excel": "^2.0.0",
@@ -50,5 +50,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://dvdapprental.herokuapp.com"
 }
